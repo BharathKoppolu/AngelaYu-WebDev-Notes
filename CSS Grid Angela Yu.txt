@@ -1,0 +1,175 @@
+-----------
+CSS Grid
+-----------
+
+Two Dimensional Layout System
+
+Flexbox vs Grid
+
+tool to align content 
+
+1D line content ; 2D grid Content
+
+Grid + Flexbox
+
+Grid:
+
+in grid, whenever we shirnk or grow the window,
+it aligns itself in the form of rows and columns
+all the gaps match up
+
+
+Flexbox:
+items generally won't line up easily as it's flexible
+
+
+Grid Ex:
+
+.html
+
+<div> 
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+</div>
+
+.css
+.container{
+	display: grid;
+	grid-template-columns: 1fr 2fr; // 1:2 fractional ratio 
+	grid-template-rows: 1fr 1fr; // 1:1
+	gap: 10px;
+}
+
+----> grid sizing:
+How to size columns and Rows
+ 
+--> fixed values 
+ grid-template-columns: 100px 200px;
+ grid-template-rows: 400px 800px;
+ 
+ //fixed values wil not give responsiveness. 
+ no change when shrinking or growing
+ 
+--> Shorthand expresssion
+ 
+ grid-templates: 100px 200px / 400px 800px; rows/ columns
+
+-->  auto size grid
+
+ grid-template-columns: 100px, auto; //fit width upto 100%
+ grid-template-rows: 400px, auto;	// fit content
+
+--> Fractional sizing
+
+	display: grid;
+	grid-template-columns: 1fr 2fr; 
+	grid-template-rows: 1fr 1fr;
+
+--> minmax sizing
+define min ad max for our column to be
+ 
+
+ grid-template-rows: 200px, 400px;
+ grid-template-columns: 200px minmax(400px,800px); 	
+	// 2nd column will be responsive upto 400px, 
+	// less than that it will stop
+
+
+
+ grid-template-rows: repeat(2,200px); // repeat(times,size);= 200px 200px
+ grid-template-columns: repeat(2,100px); 
+ 
+ 
+ if less items than grid-
+ Ex:
+	 2x3 grid 
+	 for 4 items
+ 
+ grid-template-rows: 200px 200px;
+ grid-template-columns: 200px 200px;
+	 
+	 then, they are fitted into the grid 
+	 from top left to bottom right
+	 
+	 if they are not there, they are not going to be added
+	 
+ if more items than grid
+ 
+ Ex:
+	 2x2 grid 
+	 for 5 items
+	 
+ grid-template-rows: 200px 200px;
+ grid-template-columns: 200px 200px;
+
+	 
+	 as it doesn't fit  all the items, it will
+	 automatically add all the items which are out of bound 
+	 but will get auto size matching the above column's width
+	 and only fit the height as per the content
+	 
+ grid-template-rows: 200px 200px;
+ grid-template-columns: 200px 200px;
+ grid-auto-rows: 300px // every new automatically added item will get his size
+
+----> Grid item placement
+
+
+lines
+tracks
+cells
+container
+items
+
+
+How to layout items in the grid
+
+container contains all items usually a div called grid contiainer
+grid items, when we create size of grid, we create rows and columns 
+row tracks using grid-template-rows
+column tracks using grid-template-columns
+
+grid cell
+we can use multiple cells to create a grid item
+
+lines seperating our tracks are grid lines hrizantal and vertical lines
+can only be seperated using gap property
+
+by default for div element, it will ocupy all the width of the container
+and by setting height: 100vh; it will occupy 100% height 
+
+--> Flexible layout
+align justify and wrap
+
+grid-column-start: 1;
+grid-column-end: 3;
+
+grid-row-start: 2;
+grid-row-end: 3;
+
+shorthand:
+
+grid-area: 2 / 1 / 3 / 3;  
+//grid-area: row-start / columnstart / row-end / column-end;
+
+	 
+grid-column-start: span 2; // occpies 2columns using line numbering from initial position to 
+
+from 1 to 3
+
+.container{
+	order: 1 // based on priority, all items order by default is zero
+	we can change the order of the items using this 'order' prority
+}
+
+in flex box we can't overla items on top of another
+
+but in grid we can by setting the star and end
+
+grid-column: span 2
+grid-row: span 2;
+
+grid-template-rows
+grid-template-columns

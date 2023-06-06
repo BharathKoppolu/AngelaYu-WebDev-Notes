@@ -1,0 +1,574 @@
+-----------
+React
+-----------
+React is a Frontend Framework or library for building user interfaces
+
+Reusability and modular
+
+React combines small amounts of files into a single component sop that each has it's own styling, functionality that it controls.
+we can create several of these components to perform different functions with diff apperance
+
+HTML+CSS+JS
+
+Ex: Twitter, Facebook
+
+
+
+
+
+
+
+React works by creating these JSX files
+Behind the scenes,
+HTML is picked up by a compiler and it gets converted or compiled down to actual JavaScript.
+
+
+Code Sandbox : online code editor for react
+
+
+----> Intro to JSX and Babel
+
+The compiler comes from including this React module or dependency 
+
+in index.js file
+Ex: var React = require("react");
+
+Inside the React module, we have something called Babel
+>>  it is a javascript compiler, it can take ES6, 7, 8 and
+	compile it down to plain js which can be read by every browser
+
+//Before
+ReactDOM.render(<h1>Hello World</h1>, document.getElementById("root"));
+
+//After Babel has converted the code. Here it's automatically creating the HTM Element
+ReactDOM.render(React.createElement("h1",null,""Hello World!"), document.getElementById("root"));
+
+
+// this is without using the react module in javascript file
+var h1 = document.createElement("h1");
+h1.innerHTML ="Hello World!";
+document.getElementByID("root").appendChild(h1);
+
+React, is easily readable
+ 
+>> Babel also enables us to use next gen JavaScript
+and compile it down to browser compatible javascript
+
+
+Latest features:
+
+import keyboard
+
+instead of setting it to variables etc.
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+When we use render method, it is only going to take a single HTML element
+
+
+Easy workaround for this if we have multiple html elemens, 
+is to embed all the html elements in a single div element
+Anything that is wrapped inside a div is considered as a single HTML element
+
+Ex:
+
+ReactDOM.render(
+  <div>
+  <h1>Hello World</h1> 
+  <p>This is a Paragraph</p>
+  </div>, 
+  document.getElementById("root"));
+  
+  
+----> JSX Code Practice
+
+Ex:
+//Create a react app from scratch.
+//It should display a h1 heading.
+//It should display an unordered list (bullet points).
+//It should contain 3 list elements.
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(
+  <div>
+    <h1>My 1st React Website</h1>
+    <ul>
+      <li>You</li>
+      <li>are</li>
+      <li>Awesome</li>
+    </ul>
+  </div>,
+  document.getElementById("root")
+);
+
+Here we learnt how to embed html into javascript file using JSX
+
+----> Javascript Expressions in JSX & ES6 Template Literals
+
+
+We can also embed javascript into a HTML file
+
+for this we need to wrap the javascipt variables or expressions inside curly braces
+
+Ex:
+import React from "react";
+import ReactDOM from "react-dom";
+
+const name = "Bharath";
+
+ReactDOM.render(<h1>Hello {name}</h1>, document.getElementById("root"));
+
+
+Output: Hello Bharath
+
+Ex2:
+import React from "react";
+import ReactDOM from "react-dom";
+
+const name = "Bharath";
+const lnum = 7;
+ReactDOM.render(
+  <div>
+    <h1>Hello {name}</h1>
+    <p>Your Lucky number is {lnum}</p>
+  </div>,
+  document.getElementById("root")
+);
+
+Output:
+
+Hello Bharath
+Your Lucky number is 7
+
+
+
+Ex:
+import React from "react";
+import ReactDOM from "react-dom";
+
+const name = "Bharath";
+const lnum = 7;
+ReactDOM.render(
+  <div>
+    <h1>Hello {name}</h1>
+    <p>Your Lucky number is {Math.floor(Math.random() * 10)}</p>
+  </div>,
+  document.getElementById("root")
+);
+
+NOte: We can write any expressions inside curly braces but not
+Javascript statements 
+
+Ex:
+if statement, if else etc.
+Expression is evaluated into a value
+but a stateement asks a a computer to do something like evaluating a statement
+then depending on the statement
+
+Expressions vs Statements in JavaScript
+
+Expression results in a value
+
+Statment is an instruction or action
+
+if, for, while
+
+
+we cannot place statements where expressions are expected
+
+Ex:
+	console.log(const x ); //Error
+	let b= if(x>10){return 100;}; //Error
+
+for anything within the curly braces is considered as a string
+
+	<h1>Hello {fname + " " + lname}</h1>
+
+	or <h1>Hello {fname} {lname}</h1>
+
+in ES6,	Template Literals 	{`S{}`}
+
+	<h1>Hello {`${fname} ${lname}`}</h1>
+
+basically injecting strings into javascript
+
+
+----> Javascript Expressions in JSX Practice
+
+Ex:
+	//Create a react app from scratch.
+	//It should display 2 paragraph HTML elements.
+	//The paragraphs should say:
+	//Created by YOURNAME.
+	//Copyright CURRENTYEAR.
+	//E.g.
+	//Created by Angela Yu.
+	//Copyright 2019.
+	import React from "react";
+	import ReactDOM from "react-dom";
+	const name = "Bharath Koppolu";
+	const date = new Date();
+
+	ReactDOM.render(
+	  <div>
+		<p>Created by {name}</p>
+		<p>Copyright {date.getFullYear()}</p>
+	  </div>,
+	  document.getElementById("root")
+	);
+
+
+
+----> JSX Attributes & Styling React Elements
+How to use attributes in JSX and add style in React
+
+any html code embed in JSX file
+>> we have to change type to jsx in index.html file
+>> in jsx file, class selctor in html  is 'className' is javascript
+>> And it has to be done in camel case as per javascript for any global html elements
+
+Ex:
+html element contenteditable has to be contentEditable
+spellcheck has to be spellCheck
+if we mention in the former way
+it won't work 
+
+****Note: Whenever we are wrting attributes in HTML, 
+make them camel case for it work in a JSX file
+
+
+self closing tag backslash have to present in JSX unlike in html 
+where it accepts just an empty 
+
+
+----> Inline styling for React Elements
+
+
+
+we can't directly use style="color:somecolor" as a string
+
+we need to give an object as a key:value pair for it to work in this jsx file
+if we have multiple arguments as key value pairs, 
+they are separated by a comma instead of a semicolon
+
+Ex: 
+
+Style property requires a value that is a javascript object. 
+And for it to be interpreted correctly. we just replace it with a js object as below
+
+	import React from "react";
+	import ReactDOM from "react-dom";
+
+	ReactDOM.render(<h1 style={{color:"red"}}>Hello World!</h1>, document.getElementById("root"));
+
+
+****************
+why do have to resort to inline styling when we have Class based styling?????
+
+There are certain react elements that need to be changed on the fly
+
+For objects-
+All the properties(keys) have to be in camel case in jsx file 
+and the values have to be strings. seperated by commas
+
+
+*************
+css properties are kebab case lowercase-lowercase seperated by a hyphen
+
+Ex:
+	import React from "react";
+	import ReactDOM from "react-dom";
+
+	const customStyle = {
+	  color: "red",
+	  fontSize: "20px",
+	  border: "1px solid black"
+	};
+
+	ReactDOM.render(
+	  <h1 style={customStyle}>Hello World!</h1>,
+	  document.getElementById("root")
+	);
+
+if at some point we want to change our style when it changed from morning to night...
+
+we don't have to touch the code directly,
+we just need to update the property
+
+	const customStyle = {
+	  color: "red",
+	  fontSize: "20px",
+	  border: "1px solid black"
+	};
+
+	customStyle.color = "blue";
+	
+----> React Syling Practice
+
+	//Create a React app from scratch.
+	//Show a single h1 that says "Good morning" if between midnight and 12PM.
+	//or "Good Afternoon" if between 12PM and 6PM.
+	//or "Good evening" if between 6PM and midnight.
+	//Apply the "heading" style in the styles.css
+	//Dynamically change the color of the h1 using inline css styles.
+	//Morning = red, Afternoon = green, Night = blue.
+	import React from "react";
+	import ReactDOM from "react-dom";
+
+	const date = new Date(2023, 1, 1, 1);
+	const currentHours = date.getHours();
+	console.log(currentHours);
+	let greeting;
+
+	const customStyle = {};
+
+	if (currentHours < 12) {
+	  customStyle.color = "red";
+	  greeting = "Good Morning";
+	} else if (currentHours < 18) {
+	  greeting = "Good Afternoon";
+	  customStyle.color = "green";
+	} else {
+	  greeting = "Good Night";
+	  customStyle.color = "blue";
+	}
+
+	ReactDOM.render(
+	  <h1 className="heading" style={customStyle}>
+		{" "}
+		{greeting}
+	  </h1>,
+	  document.getElementById("root")
+	);
+
+
+	<!DOCTYPE html>
+	<html lang="en">
+	  <head>
+		<title>JSX</title>
+		<link rel="stylesheet" href="styles.css" />
+	  </head>
+
+	  <body>
+		<div id="root"></div>
+		<script src="../src/index.js" type="text/JSX"></script>
+	  </body>
+	</html>
+
+	.heading {
+	  font-size: 50px;
+	  font-weight: bold;
+	  border-bottom: 5px solid black;
+	}
+
+
+----> React Components
+
+How to split up entire websie into simple smaller components
+
+creating custom components
+
+
+Ex:
+	import React from "react";
+	import ReactDOM from "react-dom";
+
+	function Heading() {
+	  return <h1>My Favourite Foods</h1>;
+	}
+
+	ReactDOM.render(
+	  <div>
+		<Heading />
+		<ul>
+		  <li>Bacon</li>
+		  <li>Jamon</li>
+		  <li>Noodles</li>
+		</ul>
+	  </div>,
+	  document.getElementById("root")
+	);
+
+
+How to get heading component from a seperate file
+ES6 features
+inside our src folder
+
+create a new file naming "Heading.jsx"
+
+index.js file will be left out as a plain js file
+All our components are seperated into inividual files with jsx extension
+We have to import react module
+
+import React from "react";
+
+function Heading() {
+  return <h1>My Favourite Foods</h1>;
+}
+
+from here we have to export the heading file
+
+
+and imort heading in index.js file to use the component
+import Heading from "./Heading";
+
+we have to use pascal case here when creating custom components, 
+words have to be capitalized
+
+
+Structured seperately
+
+with custom components
+in main js file, only Ex: App component is the only one used and
+ all the rest will be imported and exported with in App.jsx file
+ 
+All the components are generally structured into a seperate folder and then subdivided as the app grows more complex
+for easy readability and modularity
+
+---->
+React Components Practice
+
+
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+------------------------------------
+import React from "react";
+
+let greeting;
+const date = new Date(2023, 1, 1, 13);
+const currentTime = date.getHours();
+const customStyle = {
+  color: ""
+};
+
+if (currentTime < 12) {
+  greeting = "Good Morning";
+  customStyle.color = "red";
+} else if (currentTime < 18) {
+  greeting = "Good Afternoon";
+  customStyle.color = "green";
+} else {
+  greeting = "Good Night";
+  customStyle.color = "blue";
+}
+
+function Heading() {
+  return (
+    <h1 className="heading" style={customStyle}>
+      {greeting}
+    </h1>
+  );
+}
+
+export default Heading;
+
+------------------------------------
+import React from "react";
+import Heading from "./Heading";
+function App() {
+  return <Heading />;
+}
+
+export default App;
+
+
+----> Import Export and Modules
+
+import and export are only in ES6
+
+require is used for Node
+
+wildcard import is discouraged ~~~ check again
+https://stackoverflow.com/questions/31354559/using-node-js-require-vs-es6-import-export
+
+>>>in a single file, we can only have single default in export
+default export can be imported under any name in another file
+if you want more things , add a comma and in curly bracesmention the constants or functions {}
+and you can freely use those in another file which is importing
+
+export {doublePi, triplePi};
+
+import pi, { doublePi, triplePi } from "./math.js";
+
+
+>>>when using wild card
+
+
+import * as pi from "./math.js";
+
+{pi.default}
+{pi.doublePi()}
+{pi.triplePi()}
+
+
+
+
+
+
+---->  Javascript ES6 - Import, Export and Modules Practice
+
+Ex:
+
+import React from "react";
+import ReactDOM from "react-dom";
+import { add, multiply, subtract, divide } from "./calculator";
+//Import the add, multiply, subtract and divide functions
+//from the calculator.js file.
+//If successful, your website should look the same as the Final.png
+
+----------------------------
+index.js
+----------------------------
+ReactDOM.render(
+  <ul>
+    <li>{add(1, 2)}</li>
+    <li>{multiply(2, 3)}</li>
+    <li>{subtract(7, 2)}</li>
+    <li>{divide(5, 2)}</li>
+  </ul>,
+  document.getElementById("root")
+);
+
+----------------------------
+calculator.js
+----------------------------
+	function add(n1, n2) {
+	  return n1 + n2;
+	}
+
+	function multiply(n1, n2) {
+	  return n1 * n2;
+	}
+
+	function subtract(n1, n2) {
+	  return n1 - n2;
+	}
+
+	function divide(n1, n2) {
+	  return n1 / n2;
+	}
+
+	export { add, multiply, subtract, divide };
+	
+	
+----> Local Environment Setup for React Development
+
+1. Check if Node is up to Date
+2. Install VS Code
+3. Create React App
+4. Run App
+
+
+cd /my-app
+
+npm run build
+
+npm start
+

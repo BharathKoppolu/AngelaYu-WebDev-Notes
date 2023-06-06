@@ -1,0 +1,53 @@
+------------
+Node JS
+------------
+
+NodeJS is a backend framework which lets our code interact 
+with our harware/computer or a remote server
+
+installation
+
+download the latest stable version for windows/mac
+installer from Node JS website
+
+install node js
+
+go to terminal or git bash to check if it's installed
+
+node --version
+
+----> npm - is Node Package Manager
+
+it's got thousands of packages of resusable code that can be used in our project
+which is written by people like you and me
+
+we can go an browse diff packages from npm website
+
+
+if we have a folder, then go ahead with npm init
+
+fill out all that's necessary, then it will create a package.json file in our folder
+
+for installing any packages, refer to the npm package documnetation and follow below steps
+then..
+npm install <package-name>
+
+it will then go into dependencies within the package.json file
+also creating anotherpackage-lock.json file // These are the dependencies of the package we installed
+
+we can directly interact with our code from our terminal by just typing 'node'
+it will then take us into the node environment
+>
+>
+
+create a index.js file and write the code here using the packages
+
+we have to require the packages
+Ex:
+const marvelHeroes = require("marvel-comics-characters"); // marvel-comics-characters is the package name
+
+
+node index.js // this will execute the file
+
+
+

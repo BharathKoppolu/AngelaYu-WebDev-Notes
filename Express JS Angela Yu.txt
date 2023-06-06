@@ -1,0 +1,302 @@
+-----------
+Express JS
+------------
+framework
+to add extra features helps to organize and structure
+our code in web applications based on Node js
+
+We can create desktop applications using Node
+
+Atom is built on electron built on Node js
+
+Node lets u interact with computer
+
+analogy:
+
+node-screwdriver 
+express- motorised screwdriver
+
+makes you write less repetetive code
+when building web apps
+
+saving time
+
+----> Creating our first server with Express
+
+$ mkdir myapp
+$ cd myapp
+
+$ npm init
+
+entry point: (index.js)
+
+$ npm install express
+
+Ex:
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
+
+//jshint esversion:6
+const express = require("express");
+const app = express();
+
+app.listen(3000, function () {
+  console.log("Server started on port 3000");
+});
+
+//this is the root
+//here if we go to localhost:3000
+//we will get an error
+
+---> Hanndling request and Responses: GET Request
+
+when we load a website, browser wil  send a req to google server, 
+server sends a response
+
+HTML css, js are required to render it
+
+
+.get("/") // when we get a req, we set the loc of that req to come to..
+ to be root folder which is represented by forward slash
+
+and set a callback function with a a req and response as parameters
+ where to send the incoming request, what to do with it
+	app.get("/", function(request, response){
+		console.log(request);
+	});
+ 
+Here we are sending plain text
+	app.get("/", function (request, response) {
+	  response.send("Hello");
+	});
+
+we can send HTML as well
+	app.get("/", function (req, res) {
+	  res.send("<h1>Hello World!</h1>");
+	});
+	
+----> Nodemon installation
+----> Understanding and working with Routes
+
+how to create multipage websites by targetting different 
+folders when receiving a request
+
+we can create diffferent routes 
+
+
+	app.get("/contact", function (req, res) {
+	  res.send("Contact me at bharath@gmail.com");
+	});
+
+
+then if we go to http://localhost:3000/contact
+output:
+Contact me at bharath@gmail.com
+
+
+	app.get("/about", function (req, res) {
+	  res.send("I am Bharath Koppolu. Aspiring Web Developer");
+	});
+
+http://localhost:3000/about
+
+output:
+I am Bharath Koppolu. Aspiring Web Developer
+
+
+***We can setup as many routes as possible
+
+This way, we can avoid relying on creating different html files
+
+
+nodemon.io
+
+instead of using npm
+
+to auto restart your server whenever code changes
+
+	$ npm install -g nodemon // to install nodemon
+
+	$ nodemon index.js // to run on nodemon
+
+
+whenever we save, server will restart automatically
+
+----> Building a calculator website
+
+running code on backend rather than frontend
+
+code run on serverside so that all the logic is not seen by the user
+only deliver the outcome to the user
+
+computation is done even before the website is rendered to the user
+
+interact with dbs and query
+
+----> Responding to requests with HTML files
+
+
+app.get("/", function (req, res) {
+  res.sendFile("index.html");
+});
+
+instead of send a response
+we use res.sendFile method to send a whole HTML file as a response
+All we have to do is to specify the path where the html resides
+we can give like above using relative path
+
+but when we are deploying using a clod server or a remote server
+we use a constant called __dirname
+
+this gives the current directory file path of where the file is
+and append the html file or anyother file to be sent
+
+
+Ex:
+app.get("/", function (req, res) {
+  console.log(__dirname);
+});
+
+
+app.get("/", function (req, res) {
+  res.sendFile(__dirname+"/index.html");
+});
+
+
+----> Processing post requests with Parse server
+
+inside html file
+
+Ex:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <form action="/" method="post">
+      <input type="text" name="num1" placeholder="1st Number" />
+      <input type="text" name="num2" placeholder="2nd Number" />
+      <button type="submit" name="button">Calculate</button>
+    </form>
+  </body>
+</html>
+
+
+if we don't have an action attribute in form element
+then, it will take the default path of where the current file is at
+equivalent of this- action="/"
+
+status code 400
+
+
+app.post() method to handle any post requests
+
+	app.post("/", function(req, res){
+		res.send("Thanks for posting that")
+	});
+
+we will then get status code of 200
+
+to do claculations and send that response
+we have to install another npm package
+
+"body-parser"
+
+Allow us to parse the information we get sent from the post request
+
+we get hold of properteies and variables so that we can do our calculations
+
+	$ npm install body-parser
+
+// body has diff modes
+body-parser.urlencoded()
+body-parser.json()
+
+Now we get the our application to actually use it
+for that, 
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+// to post it to your server, we will use urlencoded()
+{extended: true} allows us to post nested objects
+
+why use it?
+it will let you go into any of the routes and tap into "req.body"
+this is the past version of HTTP Request
+
+parse HTTP request that we get by using urlencoded() we can get access to form ddata
+then tap into each as if they are properties 
+
+
+Ex:
+
+app.post("/", function (req, res) {
+  console.log(req.body);
+  res.send("Thanks for posting that");
+});
+
+// logging only the 1st value num1
+app.post("/", function (req, res) {
+  console.log(req.body.num1);
+  res.send("Thanks for posting that");
+});
+
+
+
+-------------------------------------------
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post("/", function (req, res) {
+  let num1 = Number(req.body.num1);
+  let num2 = Number(req.body.num2);
+  let result = num1 + num2;
+  res.send("THe result is " + result);
+});
+
+app.listen(3000, function () {
+  console.log("Server started on port 3000");  
+});
+
+------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <form action="/" method="post">
+      <input type="text" name="num1" placeholder="1st Number" />
+      <input type="text" name="num2" placeholder="2nd Number" />
+      <button type="submit" name="button">Calculate</button>
+    </form>
+  </body>
+</html>
+
+----> BMI Routing Challenge
+
+
+

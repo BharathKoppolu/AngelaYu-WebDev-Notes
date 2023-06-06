@@ -1,0 +1,121 @@
+---------------------
+Advanced CSS Angela Yu
+---------------------
+
+----> CSS Display
+
+3 types of display Property:
+Block, Inline and Inline-Block
+
+span is set to something called inline
+
+	Ex: two span elements are going to be on the same line until they aren't going to fit the webpage. 
+	In that case, it will go the next line
+
+-> Inline
+We can't set size height or width for inline. They will default to the size of their content
+inline elemnt would strech to fit that size
+
+-> Inline-Block
+block elemtn will allow us to set height and width
+
+
+	.html
+	<h2>Harry</h2>
+	<h2>Potter</h2>
+
+
+	h2{
+		display: block; // this will let you occupy all the block width
+	}
+
+	h2{
+		display: inline; // can't set the size but it will enable the next elemts to be inline with this
+	}
+
+	h2{
+		display: inline-block; // can set the size and enable the next ele be inline with this
+	}
+
+
+----> CSS Float
+Wrapping text using float and clear
+
+Wrap text around another element
+
+-> float property
+Ex: img elemt and a p elemt , we have to wrap the text around the img elemt
+
+<img />
+<p></p>
+
+
+style.css
+
+img{
+	float: left; //image will be on the left
+}
+
+
+-> clear property
+
+footer{
+	clear: left;
+}
+
+footer{
+	clear: right;
+}
+
+footer{
+	clear: both; //will stay clear of both left and right floats
+}
+
+at present, floar and clear are not being used much
+in modern web design, only use float when ou have to wrap text around img
+
+
+less complicated tools like
+flexbox, grid , bootstrap etc to make these kinds of changes
+
+
+----> Responsive Websites
+
+Making websites look good on all screen sizes
+
+inorder to do that, we need to make the website responsive 
+it responds to the change in screen sizes
+
+1. Media Queries
+adding breakpoints
+media query is put instead of a CSS selector
+Ex:
+@media (max-width: 600px){
+	/* CSS for screen below or equal to 600px wide */
+}
+
+2. CSS Grid
+creating 2D layouts
+.grid-container{
+}
+
+3. CSS Flexbox
+creating 1D layouts
+
+dividing up the width or height based on ratios provided or percentages
+.flex-container{
+}
+
+4. External Frameworks e.g. Bootstrap
+
+bootstrap is built on top of flex-container
+
+12 sections of the website
+
+
+----> Media Queries
+
+max-width
+min-width
+screen
+print

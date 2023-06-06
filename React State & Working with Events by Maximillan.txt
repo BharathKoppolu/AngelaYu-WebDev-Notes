@@ -1,0 +1,439 @@
+-------------------------
+React State & Working with Events by Maximilian 
+--------------------------
+
+User interaction & state
+Making apps interactive and reactive
+
+----> Listening to events and working with event handlers
+
+//Imperative Approach
+document.getElementById('root').addEventListener()
+
+//Declarative approach
+in React  
+go to JSX element, there we add a special prop
+
+it starts with 'on'
+there are several events in react with 'on'
+
+
+so we have to give a value to this onevent props 
+to it a functionality
+what's the value?
+it has to be a function
+
+
+Ex:
+
+<button onClick = () => {console.log('Clicked')}>Change Title</button>
+
+we don't typically work with anonymous arrow functions.
+
+we also use function()
+ Try to keep the JSX code lean
+ instead try to define a function before we return
+ 
+ using const and arrow function or function () keyword
+ and with in the return jsx code, at the even handler, 
+we just point at  'clickHandler' 
+which is the name of the function in our example. 
+don't add parantheses here 
+i.e don't execute it here
+ 
+ const clickHandler = () => {
+	console.log('Clicked!!!!');
+ };
+ 
+ 
+ <button onClick = {clickHandler}>Change Title</button>
+
+
+-------------
+----> How Component functions are executed?
+
+> Each component is just a function which contains jsx code
+> Each component will keep on calling the components within until
+there are no functions left to call
+
+
+> React only goes through all of this only 
+when initially the app is rendered
+
+> never repeats itself
+
+For react to know when an event has happened 
+and needs to be updated
+There's something called "State"
+
+---------------------
+----> What is State?
+
+just coz a click occured or a variable value changed 
+doesn't trigger or reevaluate 
+
+the function will not be caled a second tie after it was initially rendered
+
+to let react know that something has changedwe have to import something
+called 'named'
+
+import React, {useState} from 'react'
+
+
+inside of the component function we call useState();
+This is a react Hook
+
+they start with word 'use'
+
+they canot be called outside the functions
+or nested functions
+
+should be directly called inside the component function
+oly one exception
+
+useState always returns an array with exactly two elements
+
+1st element -  initial value
+2nd element - updated value
+
+The React useState Hook allows us to track state in a function component.
+
+Ex:
+	import { useState } from "react";
+	import ReactDOM from "react-dom/client";
+
+	function FavoriteColor() {
+	  const [color, setColor] = useState("red");
+
+	  return (
+		<>
+		  <h1>My favorite color is {color}!</h1>
+		  <button
+			type="button"
+			onClick={() => setColor("blue")}
+		  >Blue</button>
+		</>
+	  )
+	}
+
+	const root = ReactDOM.createRoot(document.getElementById('root'));
+	root.render(<FavoriteColor />);
+
+
+We could create multiple state Hooks to track individual values.
+
+
+-----------------
+----> Adding from inputs
+
+to directly take input from users
+
+creat new components to add a form element
+
+-----
+Listening to user input
+
+
+Ex:
+
+	import React, { useState } from 'react';
+	import './ExpenseForm.css';
+
+	const ExpenseForm= () => {
+		const [enteredTitle, setEnteredTitle] = useState('');
+		const [enteredAmount, setEnteredAmount] = useState('');
+		const [enteredDate, setEnteredDate] = useState('');
+
+		const titleChangeHandler = (event) => {
+			setEnteredTitle(event.target.value);
+		};
+		const amountChangeHandler = (event) => {
+			setEnteredTitle(event.target.value);
+		};
+		const dateChangeHandler = (event) => {
+			setEnteredTitle(event.target.value);
+		};
+
+
+		return (
+			<form>
+				<div className='new-expense__controls'>
+					<div className='new-expense__control'>
+						<label>Title</label>
+						<input type="text" onChange={titleChangeHandler}/>
+					</div>
+					<div className='new-expense__control'>
+						<label>Amount</label>
+						<input type="number" min="0.01" step="0.01" onChange={amountChangeHandler}/>
+					</div>
+					<div className='new-expense__control'>
+						<label>Date</label>
+						<input type='date' min='2023-01-01' max='2023-04-05' onChange={dateChangeHandler}/>
+					</div>
+				</div>
+				<div className='new-expense__actions'>
+					<button type="submit">Add Expense</button>
+				</div>
+			</form>
+		);
+
+	};
+	export default ExpenseForm;
+	
+
+-------------
+Multiple states vs one State
+
+which one is better?
+
+
+by passing as an object
+
+
+	import React, { useState } from 'react';
+	import './ExpenseForm.css';
+
+	const ExpenseForm= () => {
+		// const [enteredTitle, setEnteredTitle] = useState('');
+		// const [enteredAmount, setEnteredAmount] = useState('');
+		// const [enteredDate, setEnteredDate] = useState('');
+
+
+		const [userInput, setUserInput] = useState({
+			enteredTitle:'',
+			enteredAmount:'',
+			enteredDate:''
+		});
+
+		const titleChangeHandler = (event) => {
+			// setEnteredTitle(event.target.value);
+			setUserInput({
+				...userInput,
+				enteredTitle: event.target.value,
+			})
+		};
+		const amountChangeHandler = (event) => {
+			// setEnteredTitle(event.target.value);
+			setUserInput({
+				...userInput,
+				enteredAmount: event.target.value,
+			})
+		};
+		const dateChangeHandler = (event) => {
+			// setEnteredTitle(event.target.value);
+			setUserInput({
+				...userInput,
+				enteredDate: event.target.value,
+			})
+		};
+
+
+		return (
+			<form>
+				<div className='new-expense__controls'>
+					<div className='new-expense__control'>
+						<label>Title</label>
+						<input type="text" onChange={titleChangeHandler}/>
+					</div>
+					<div className='new-expense__control'>
+						<label>Amount</label>
+						<input type="number" min="0.01" step="0.01" onChange={amountChangeHandler}/>
+					</div>
+					<div className='new-expense__control'>
+						<label>Date</label>
+						<input type='date' min='2023-01-01' max='2023-04-05' onChange={dateChangeHandler}/>
+					</div>
+				</div>
+				<div className='new-expense__actions'>
+					<button type="submit">Add Expense</button>
+				</div>
+			</form>
+		);
+
+	};
+	export default ExpenseForm;
+
+
+-----------
+if your state update depends on the previous State
+Then use function for it
+
+
+         setUserInput((prevState)=>{
+             return {...prevState, enteredTitle: event.target.value}
+         })
+
+
+
+
+----------------------
+----> Handling form submission
+
+
+    const formSubmitHandler = (event) => {
+        event.preventDefault();
+
+        const expenseData= {
+            title: enteredTitle,
+            amount: enteredAmount,
+            date: new Date(enteredDate)
+        };
+        console.log(expenseData);
+    
+    };
+
+----> Adding Two way binding
+****************************very important in forms
+within the input element
+
+add value attribute
+
+so that after we hit submit
+then we can set the "value" to empty in the submitHandler
+i.e we get a cleared input page
+
+
+    const formSubmitHandler = (event) => {
+        event.preventDefault();
+
+        const expenseData= {
+            title: enteredTitle,
+            amount: enteredAmount,
+            date: new Date(enteredDate)
+        };
+        console.log(expenseData);
+        setEnteredTitle('');
+        setEnteredAmount('');
+        setEnteredDate('');
+
+    
+    };
+
+    return (
+        <form onSubmit={formSubmitHandler}>
+            <div className='new-expense__controls'>
+                <div className='new-expense__control'>
+                    <label>Title</label>
+                    <input type="text" value={enteredTitle}onChange={titleChangeHandler}/>
+                </div>
+                <div className='new-expense__control'>
+                    <label>Amount</label>
+                    <input type="number" min="0.01" step="0.01" value={enteredAmount} onChange={amountChangeHandler}/>
+                </div>
+                <div className='new-expense__control'>
+                    <label>Date</label>
+                    <input type='date' min='2020-01-01' max='2022-12-31' value={enteredDate}onChange={dateChangeHandler}/>
+                </div>
+            </div>
+            <div className='new-expense__actions'>
+                <button type="submit">Add Expense</button>
+            </div>
+        </form>
+    );
+
+-----------------------
+-----------> Child to parent Component Communication
+(Bottom-up)
+
+
+1. parent file is NewExpense.js (as an example) and child is ExpenseForm.js
+
+2. we want expenseData from ExpenseForm.js to be available in NewExpense.js
+
+3. to do this, in our parent, NewExpense.js, we create 'saveExpenseDataHandler'
+
+4. this const has a param of enteredExpenseData, this is what it expects to be passed through (the values/arguments in our ExpenseForm.js that we will eventually pass back as a param to enteredExpenseData)
+
+5. this function of saveExpenseDataHandler, we save this as a custom prop that we call onSaveExpenseData, and because this is attached to ExpenseForm (inside NewExpense.js) now we can use this custom prop which points to the function of saveExpenseDataHandler, inside our ExpenseForm.js
+
+6. In our ExpenseForm.js, props has to be passed through at the top so we can access the custom prop of onSaveExpenseData that we made in NewEspense.js
+
+7. now i can call this custom prop, as props.onSaveExpenseData(expenseData). the portion that is passed through (expenseData) is our argument, these are all the values from the const expenseData inside our ExpenseForm.js.
+
+8.Automatically now, our argument of expenseData (title,amount,data), is passed back to our parent file (NewExpense.js) and is our parameter: enteredExpenseData.
+
+9. now that we have the data from expenseData (the expenseData from ExpenseForm.js) available in our NewExpense.js file, we give it an id, and also run ...enteredExpenseData, which essentially copies the data forwarded (title: something, amount: someamount, Date: someday).
+
+10. So now, we offically have this data available for use in NewExpense.js
+
+
+
+11. App.js is the parent now, and NewExpense.js is the child, so if you repeat the steps, (make a custom prop in App.js, pass it through to be used in NewExpense.js, then you will also have the data of expenseData available in App.js)
+
+12. You can tell who is the parent and child by the custom components we create
+
+
+
+--------------
+-----> Lifting the state up
+
+We can only communicate from parent to child and child to parent
+
+can't do with the siblings
+
+
+workaround?
+
+As there is app component which has access to these both involved components
+
+NewExpense and Expenses
+
+We will utilise that
+to store our state in that closeest involved component (App)
+
+by lifting our state up
+
+in NewExpense.js
+by using         props.onAddExpense(expenseData);
+onAddExpense prop , we're lifting the state up to App.js
+
+
+then pass data via props to another child component
+
+
+
+Controlled component
+
+passing value from child > parent and 
+then receiving value from parent > child via props
+
+controlled component whenever there is two way binding
+
+Expenses controls ExpensesFilter Component
+
+
+
+
+
+
+Steteful vs Stateless components
+
+stateless or presentational or dumb component which doesn't manage any state
+
+which manage state are called stateful components
+
+
+Which value should you pass to event listener props like onClick?
+That's the correct choice - you want to pass a "pointer" at the to-be-executed function as a value to onClick etc. Then, this function gets executed "on your behalf" by React when the event occurs.
+
+
+How can you communicate from one of your components to a parent (i.e. higher level) component?
+That's the correct choice. In JavaScript, functions are just objects (i.e. regular values) and hence you can pass them as values via props to a component. If that component then calls that function, it executes - and that's how you can trigger a function defined in a parent component from inside a child component.
+
+How can you change what a component displays on the screen?
+
+create some sate value via useState which u can the change and output in JSX
+
+
+Why do you need this extra "state" concept instead of regular JS variables which you change and use?
+
+That's correct! React doesn't care whether you changed some variable values. It'll not re-evaluate the component function. It only does that for changes to registered state values (created via useState)
+
+
+
+
+
+
+
+
+

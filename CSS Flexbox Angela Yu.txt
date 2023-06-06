@@ -1,0 +1,286 @@
+-------------
+CSS Flexbox
+-------------
+
+what is it and how does it work?
+
+
+table in html only used if it's actually a table, not used for styling
+
+this is actually done in display property using css
+
+position property etc.
+
+but this is all complex and not a great way to do it
+
+Most relied tools was using float. used to create complex layouts as well
+and clear
+
+Not simple and quite hard to fix for any changes
+
+
+Float: good for magazine style layouts
+
+Flexbox: Overall Page Structure
+or grid, bootstrap
+ specifically designed for Overall Page Structure
+ 
+ Flexbox is incredibly easy to use
+ 
+ wrap all the div's in a container and 
+ 
+ 
+ great additinal properties
+ 
+ gap etc.
+ 
+ .container {
+	display: flex;
+	gap: 10px;
+ }
+ 
+ 
+when we make something flex, it no longer abides by any of these rules 
+like inline bloc inline-block, None
+ 
+ we have to treat it as a seperate entity
+ 
+ to layout all content in a desired way
+ 
+Diff elements by default have diff display values
+ 
+div // block
+
+span // inline
+
+p
+
+img
+
+
+if we specify all the above elements in a flex container. display:flex
+then all these display values will e ignored all will be laid out by flexbox
+we can also do-
+
+display: inline-flex
+
+
+Ex:
+    .container {
+      padding: 10px;
+      background-color: gold;
+      display:flex;
+      gap: 10px;
+    }
+
+----> Flex Direction
+Row and Column Layouts
+
+how to modify flexbox to achieve the layouts
+
+All the elements when put in a flexbox goes in the same row
+
+due to property flex-direction which is by default is Row
+
+flex-direction: row;   // main axis is set
+
+cross axis is perpendicular is to main axis
+
+flex-direction: column // all the items inside go from top to bottom, 
+all will be in a column
+andd this will be the main axis and cross axis will be the perperdicular to this axis
+
+flex-basis: 100px;
+
+gap between the items will be 10pixels 
+
+for row , it will adjust the width, flexing along main axis
+fow column, elx basis is the height , flexing along main axis
+
+inline-flex // width will only be as much as the longest text would be 
+// not the whole page or block
+
+
+----> Flex Layout
+ 
+ ALign, Justify, Wrap
+ 
+ 
+ order: 0; // child flex item
+ 
+ .container
+ .childflexitem
+ 
+ to rearrange
+ 
+ we use order: 0;
+ 
+ .green{
+	order:1;
+ }
+ 
+ flex-wrap: nowrap;
+ 
+ 
+ when run out of space
+ 
+ pushed to the end, not going to go to the next line by default
+ to move it to the next line which ever elemntes don't have enough space
+ 
+ flex-wrap: wrap;
+ flex-wrap: nowrap;
+ flex-wrap: wrapreverse;
+ 
+ 
+ justify-content: flex-start; // set on parent container
+ 
+  justify-content: flex-end;// bunched up to the start// bunched up to the end
+  
+  provided that all elemtns are expanded to mx width, 
+  if already taken up all space, this will not affect
+
+justify-content: space-between;
+// creates space between items 
+
+justify-content: space-around; // spaces created before start and after end as well
+
+justify-content: space-evenly;
+
+
+// This only works in flex-wrap: nowrap
+
+align-items: flex-start;
+height: 70vh; // vh- viewport height 100 is the total height of the webpage
+
+
+align-items: flex-end; // bunch up to the bottom
+align-items: flex-center;
+align-items: flex-baseline;
+align-items: flex-stretch;
+
+we need to set height of the container; aligns items along the cross axis
+
+
+if we want one particular item. it would need another align value
+to reach item iteself, align-self: flex-start;
+ 
+ // only works when  flex-wrap: wrap;
+ flex-wrap: wrap;
+ align-content: center;
+ heigh: 70vh;
+ // 
+ 
+ Flexbox Froggy
+ 
+----> Flex Sizing
+Shrinking and Growing
+
+Ex: 4 p elements block elements
+
+if put in lexbox
+by default all flex items will be along a row
+
+even withourt writing anything, if we shirnk the window, 
+it would by default shrink the items inside by flexbox
+
+priority list
+
+Content width < Width < flex-basis < min-width/max-width
+
+Ex:1
+
+Content Width
+//max-width looks at the longest line possible 
+//min-width longest word to determine the min-width
+
+Flex Container
+display: flex;
+gap: 10px;
+
+// trying to set the width manually 
+//each item is 100px wide
+// when shrunk, it will then ignore this and dynamically shrinks
+// and continue until it reaches min-width
+//it will not shrink the box until it has that threshold of 100px, 
+// once it goes lower than that, only then it starts to shrink
+Ex2:
+
+	Flex items:
+	width: 100px;
+	
+Ex3:
+
+	Flex items:
+	width: 100px;
+	flex-basis: 200px; //determining width of each item
+	//it will completely ignore the width above as it contains flex-basis
+	//when it can't give min 200px width, 
+	it will then start shring box until the min-width of the word inside 
+	
+Ex4: min-width/max-width
+
+max - all content lined up in it's ideal size, all on one line
+min- determined by the longest word
+
+	Flex items:
+	
+	flex-basis: 200px;
+	max-width: 100px; // will ignore flex-basis completely
+	
+	if max-width <flex-basis // max-width
+	if max-width > flex-basis // flex-basis
+	
+	
+	flex-basis: 200px;
+	min-width: 300px;
+	
+	if min-width > flex-basis // min-width
+	ifmin-width < flex-basis // flex-basis
+	
+	
+	
+	Grow & Shrink 
+	
+	flex-basis: 100px; // initial starting value
+	flex-grow: 0;
+	flex-shrink: 0;
+	
+	flex-basis: 100px; // initial starting value
+	flex-grow: 1; // it will grow the size of the items 
+					until the entire width of the container is filled 
+	flex-shrink: 0;
+	
+-- This is the default setting of flex-box items, it won't grow but will shrink
+	flex-basis: 100px; // initial starting value
+	flex-grow: 0;	// it wil not grow but it will shrink the size of the items 
+					until the min-width of the content
+	flex-shrink: 1;
+	
+	
+	
+	flex-basis: 100px; // initial starting value
+	flex-grow: 1; // will grow until max-width
+	flex-shrink: 1; // will shrink until min-width
+	// will completely ignore flex-basis
+	
+	default for flex-basis: auto; // this will give more width to item with longer contenta
+	and will give less width to smaller content
+	if you want all the items' width to be equal, then just mention flex-basis: 0;
+	
+	shorthand expression
+	flex: grow shrink basis;
+	flex: 1 1 0;
+	
+	or 
+	
+	flex: 1;
+	
+	flex: 2;
+	
+	flex: 3; // giving ratios
+ 
+----> Pricing Table Project
+ 
+ Using Flexbox in practice
+ 
+ 

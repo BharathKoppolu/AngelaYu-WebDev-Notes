@@ -1,0 +1,221 @@
+----------------------
+Rendering Lists & Conditional Content by Maximilian
+----------------------
+
+Outputting Dynamic lists of content
+Rendering content under certain conditions
+
+------------------------
+---->Rendering lists of data
+
+
+using array.map() method and rendering the list dynamically instead of hard coding. 
+
+return (
+        <div>
+        <Card className="expenses">
+        <ExpensesFilter selected={filteredYear} onChangeExpenseFilter = {changeExpenseFilterHandler}/>
+            {props.items.map(expense => <ExpenseItem title={expense.title} amount={expense.amount} date={expense.date}/>)}
+         
+		 {/* 
+		 <ExpenseItem title={props.items[0].title} amount={props.items[0].amount} date={props.items[0].date}/>
+         <ExpenseItem title={props.items[1].title} amount={props.items[1].amount} date={props.items[1].date}/>
+         <ExpenseItem title={props.items[2].title} amount={props.items[2].amount} date={props.items[2].date}/>
+         <ExpenseItem title={props.items[3].title} amount={props.items[3].amount} date={props.items[3].date}/> */}
+			
+        </Card>
+        </div>
+        );
+		
+--------
+Using Stateful lists
+
+import React, { useState } from 'react';
+import Expenses from "./components/Expenses/Expenses";
+import NewExpense from './components/Expenses/NewExpense/NewExpense';
+
+Ex:
+
+		const DUMMY_EXPENSES = [
+		  {
+			id: 'e1',
+			title: 'Toilet Paper',
+			amount: 94.12,
+			date: new Date(2020, 7, 14),
+		  },
+		  { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
+		  {
+			id: 'e3',
+			title: 'Car Insurance',
+			amount: 294.67,
+			date: new Date(2021, 2, 28),
+		  },
+		  {
+			id: 'e4',
+			title: 'New Desk (Wooden)',
+			amount: 450,
+			date: new Date(2021, 5, 12),
+		  }
+		];
+
+
+		const App = () => {
+		  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+
+		  const addExpenseHandler = (expense) => {
+			setExpenses((prevExpenses) => {
+			  return [expense, ...prevExpenses];
+			});
+		  };
+
+		  return (
+			<div>
+			  <NewExpense onAddExpense={addExpenseHandler}/>
+			  <Expenses items = {expenses} />
+			</div>
+		  );
+		}
+
+		export default App;
+		
+	-----------> Understanding Keys
+
+		import ExpenseItem from './ExpenseItem';
+	import './Expenses.css';
+	import Card from '../UI/Card';
+	import React, { useState } from 'react';
+	import ExpensesFilter from './ExpensesFilter';
+
+
+	const Expenses = (props) => {
+		const [filteredYear, setFilteredYear] = useState('2020');
+
+
+		const changeExpenseFilterHandler = (selectedYear) => {
+			setFilteredYear(selectedYear);
+		};
+
+		const filteredExpenses = props.items.filter(expense => {
+			return (expense.date.getFullYear().toString() === filteredYear);
+		});
+
+
+	return (
+			<div>
+				<Card className="expenses">
+					<ExpensesFilter 
+						selected={filteredYear} 
+						onChangeExpenseFilter = {changeExpenseFilterHandler}
+					/>
+					{filteredExpenses.map(expense => (
+						<ExpenseItem 
+							key={expense.id}
+							title={expense.title} 
+							amount={expense.amount} 
+							date={expense.date}/>
+					))}
+					{/* <ExpenseItem title={props.items[0].title} amount={props.items[0].amount} date={props.items[0].date}/>
+						<ExpenseItem title={props.items[1].title} amount={props.items[1].amount} date={props.items[1].date}/>
+						<ExpenseItem title={props.items[2].title} amount={props.items[2].amount} date={props.items[2].date}/>
+						<ExpenseItem title={props.items[3].title} amount={props.items[3].amount} date={props.items[3].date}/> */}
+				</Card>
+			</div>
+			);
+	}
+
+	export default Expenses;
+	
+--------------> 
+Outputting conditional content
+
+2 ways
+
+    let expensesContent = <p>No expenses found.</p>;
+    if (filteredExpenses.length > 0){
+        expensesContent = filteredExpenses.map(expense => (
+            <ExpenseItem 
+                key={expense.id}
+                title={expense.title} 
+                amount={expense.amount} 
+                date={expense.date}/>
+        ));
+    } 
+return (
+        <div>
+            <Card className="expenses">
+                <ExpensesFilter 
+                    selected={filteredYear} 
+                    onChangeExpenseFilter = {changeExpenseFilterHandler}
+                />
+                {expensesContent}
+
+                {/* {filteredExpenses.length === 0 && <p>No expenses found.</p>}
+                {filteredExpenses.length > 0  && filteredExpenses.map(expense => (
+                    <ExpenseItem 
+                        key={expense.id}
+                        title={expense.title} 
+                        amount={expense.amount} 
+                        date={expense.date}/>
+                ))} */}
+
+            </Card>
+        </div>
+        );
+}
+
+export default Expenses;
+
+****************
+Assignment to show warning message if clicked on Delete
+else 
+just show delete
+
+
+Ex:
+
+	import React, {useState} from 'react';
+
+	// don't change the Component name "App"
+		export default function App() {
+			
+		const [delState, setDelState] = React.useState(false);
+		const isDeleting = () => {
+			setDelState(true);
+		};
+		
+		const isProceeding = () => {
+		  setDelState(false);
+		};
+		
+		let displayCon = '';
+		
+		//Conditional statement. Checking First click on "Delete      
+		if(delState) {
+				displayCon= <div id="alert">
+							  <h2>Are you sure?</h2>
+							  <p>These changes can't be reverted!</p>
+							  <button onClick={isProceeding}>Proceed</button>
+							 </div>;
+					// Checking if Proceed was clicked     
+					 }
+		
+		return (
+		  <div>
+			{displayCon}
+			<button onClick={isDeleting}>Delete</button>
+		  </div>    
+		);
+	}
+	
+	vYou can update the project to React 18 with these two steps:
+1) npm install --save react@latest react-dom@latest
+
+2) Update index.js:
+
+Replace
+
+ReactDOM.render(<App />, document.getElementById('root'));
+with
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);

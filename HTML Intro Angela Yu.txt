@@ -1,0 +1,53 @@
+----------------
+Intro to HTML  Section 2 Angela Yu
+----------------
+
+--> Heading Elements
+
+<Tag> vs Element
+
+- Tag is enclosed within the angle brackets
+- Element is the content along with the opening and closing tags	
+
+// Heading tags
+<h1> </h1>
+
+//Element
+<h1>Hello There</h1>
+
+Based on hierarchy,
+there are different levels of heading tags in HTML h1 to h6
+<h1>Heading 1</h1> // Biggest
+<h1>Heading 2</h2>
+<h1>Heading 3</h3>
+<h1>Heading 4</h4>
+<h1>Heading 5</h5>
+<h1>Heading 1</h6> // Smallest
+
+
+
+--> Paragraph Elements
+
+<p>This is a paragraph</p>
+<p>This is a paragraph</p>
+
+
+--> Self Closing Elements
+
+void element is an element where you are forbidden to enter any content inside the tags
+Forward slash is just before the end of the tag
+
+Horizantal Rule Element
+it is just a horizantal line. used to seperate pararaphs
+usually used between paragraphs.
+<hr/> or <hr> is acceptable from html5
+
+
+Break Element
+
+Ex: usually in the same paragraph but to differenciate, we use a break element. Functions like 'enter'
+
+<br/> or <br> is acceptable from html5
+
+
+Project Movie Ranking

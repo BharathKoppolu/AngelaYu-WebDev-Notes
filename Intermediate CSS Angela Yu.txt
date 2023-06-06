@@ -1,0 +1,206 @@
+Cascading Style Sheets
+
+// if we have 2 css files and each one is trying to target the same element, 
+// we have to manage the hierarchy, which arules get applied and which rules get ignored
+// that's where cascade comes in
+// browser is going to see which one is at the end of the cascade
+// and those rules apply
+
+
+Ex: 
+	<ol>
+		<li>One</li>
+		<li>Two</li>
+		<li>Three</li>
+	</ol>
+	
+	style.css // 1st
+	li{
+		color:green
+	}
+	
+	// if one those list items have an inline attribute style="color:red"
+	// Then what will happen?
+	// Here, cascade comes in
+	
+	//1st the external styling comes in
+	//then it will look for inline style and it will be applied
+	
+	<ol>
+		<li>One</li>
+		<li style="color:red">Two</li>
+		<li>Three</li>
+	</ol>
+	
+	style.css // 1st
+	li{
+		color:green
+	}
+	
+	There are 4 Categories to determine the hierarchy of a CSS Rule:
+	1. Position
+	
+	// Lower it is in the selector, More important.
+	// position property which comes last applies in a css external style or inline 
+	
+	Ex: li{
+			color: red;
+			color: blue;
+		}
+	
+	
+	2. Specificity
+	
+	// How specific a selector is..
+	In the order of increasing priority:
+	// 4. Element
+	// 3. Class
+	// 2. Attribute
+	// 1. id		// Top Priority
+	
+	Ex: li {color: blue;}
+		.first-class {color: red;}
+		li[draggable] {color: purple;}
+		#first-id {color: orange;}
+		 
+	3. Type
+	
+	// 3. External
+	// 2. Internal
+	// 1. Inline		// Top Priority
+	
+	Ex:
+	<link rel="stylesheet" href="./style.css">
+	<style></style>
+	<h1 style=" ">Hello</h1>
+	
+	4. Importance
+	
+	Ex: 
+	
+	color: red;
+	color: green !important; // if we have this "!important", it's going to trump all other priorities 
+							 // and gives it the most importance
+	
+----> Cobining CSS Selectors
+How to target specific elements in a style
+
+Ex:
+
+	<p>Yellow Text</p>
+        <div class="box inner-box">
+          <p class="white-text">White Text</p>
+		</div>
+		
+		
+		style.css file
+		
+		.innerbox p{			//Combining selectors 
+			color: white;
+		}
+		
+		// 1st it will check for inner-box then it will look for p in the descendants and apply
+		
+		
+Different ways of combining selectors:
+1. Group Rule = Apply to both or all the selctors specified
+	using a comma ,
+	
+	selector, selector {
+		color: blueviolet;
+	}
+	
+2. Child Rule = Apply to direct child of left side; one level nested
+	We can use a right angled bracket to select a child of another selector
+	parent > child
+	selector > selector {
+		color: blueviolet;
+	}
+	
+3. Descendant= Apply to the descendant of left side
+	selectors separated by a single space, how many ever levels down
+	ancestor descendant
+	
+	selector selector {
+		color: blueviolet;
+	}	
+4. Chaining = Apply where ALL selectors are true
+	No space b/w selectors; it could be #sign for ids or .classes or elements
+	Always start off with elements to avoid confusion whenwriting with no spaces
+	selectorselector {
+		color: blueviolet;
+	}	
+5. Combining Combiners
+	selector selectorseleector{
+		font-size: 2rem;
+	}
+
+html file
+<body>
+  <h1>To Do List</h1>
+  <h2>Monday</h2>
+  <div class="box">
+    <p class="done">Do these things today!</p>
+    <ul class="list">
+      <li>Wash Clothes</li>
+      <li class="done">Read</li>
+      <li class="done">Maths Questions</li>
+    </ul>
+  </div>
+
+  <ul>
+    <p class="done">Other items</p>
+  </ul>
+  <p>The best preparation for tomorrow is doing your best today.</p>
+
+</body>
+
+style.css
+h1,h2 {
+  color: blueviolet;
+}
+
+.box > p {
+  color: firebrick;
+}
+
+div li {
+  color: blue;
+}
+
+li.done {
+  color: seagreen;
+}
+ul p.done {
+  font-size: 0.5rem;
+}
+
+
+----> CSS Positioning
+
+Static, Relative, Absolute, Fixed and  positioning
+
+1. Static:
+	This is HTML default flow
+2. Relative
+	Position relative to default position
+	
+	Ex:
+	position: relative;
+	left: 50px;
+	top: 50px;
+3. Absolute (relative to the webpage)
+	position relative to nearest positioned ancestor or top left corner of webpage
+	
+	z-index determines which elemt goes on top of which element
+	default is 0
+	negative makes it go back
+	positive 
+	
+4. Fixed Positioning (relative to the browser)
+	Position relative to the top left corner of the browser window 
+	
+	
+*** Position is outside of the margin
+
+CSS Flag Project

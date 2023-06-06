@@ -1,0 +1,100 @@
+------------
+Intermediate HTML Angela Yu
+---------------
+
+-->Unordered List
+
+will create bullet points
+
+ul-unordered list
+li-list items
+
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+-->Ordered List
+Gives us numbers
+
+<ol>
+	<li></li>
+	<li></li>
+	<li></li>
+</ol>
+
+--> Nesting and Indentation
+
+Nesting one list inside another list
+
+<ol>
+	<li>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</li>
+	<li></li>
+	<li></li>
+</ol>
+
+
+--> Anchor Elements
+<tag nameofattribute=value anotherattribute = value2> Content </tag>
+<tag href="targeturl" anotherattribute = value2> Content </tag>
+
+global attributes,
+once the attribute is set, we can click and drag that attribute
+
+<a href="https://www.google.com/"> This is a link</a>
+
+
+Ex:
+start will make the numbering start from the specified
+
+<ol start="6">
+  <li><a href="https://www.google.com/">Google</a></li>
+  <li><a href="https://duckduckgo.com/">DuckDuckGo</a></li>
+  <li><a href="https://www.codewars.com/">Code Wars</a></li>
+  <li><a href="https://www.netflix.com/in/">Netflix</a></li>
+  <li><a href="https://www.amazon.com/">Amazon</a></li>
+</ol>
+
+--> Image Elements
+
+this is also a self closing tag or void element
+<img src="url"/>
+
+
+-->  Example Project
+
+	<!-- Example image URL -->
+
+	<!-- Example Google Maps Link -->
+
+	<h1>It's My Birthday</h1>
+	<h2>On 6th July</h2>
+	<img
+	  src="https://img.freepik.com/free-vector/kids-birthday-party-decoration-festive-cake_107791-2554.jpg?w=2000"
+	  width="400"
+	  height="400"
+	  alt="Birthday Party Image"
+	/>
+
+	<h3>What to Bring:</h3>
+	<ul>
+	  <li>An Empty stomach. Lots of food here..!</li>
+	  <li>Cake</li>
+	  <li>Ballons</li>
+	</ul>
+
+	<h3>
+	  Directions:
+	  <a
+		href="https://www.google.com/maps/place/8201+Memorial+Ln,+Plano,+TX+75024,+USA/@33.0911079,-96.7984708,17z/data=!3m1!4b1!4m6!3m5!1s0x864c3cdc0e4c9681:0x45970f0e3d796804!8m2!3d33.0911079!4d-96.7984708!16s%2Fg%2F11cpgj02y_"
+	  >
+		Google Maps Link</a
+	  >
+	</h3>

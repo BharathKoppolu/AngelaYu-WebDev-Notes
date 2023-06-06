@@ -1,0 +1,12 @@
+--------------
+Bootstrap 
+--------------
+CSS External Framework created in 2010 by twitter devs
+
+contained prebuilt css files
+
+12 column layout system built on top of flexbox
+
+Mobile first approach
+
+

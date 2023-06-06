@@ -1,0 +1,236 @@
+-----------------
+Intro to CSS Angela Yu
+------------------
+
+CSS
+
+Cascading Style Sheets
+
+cascades like a waterfall. general to most specific style requiremnts
+
+HTML (Mark up Language)
+
+Style Sheet Language
+-Cascading Style Sheet
+-Sass
+-Less
+
+W3Consortium
+
+ font color face size center Deprecated HTML elements
+ 
+ HTML is meant only for content
+ 
+ Attach Style to HTML documents through CSS
+ 
+ -> How to Add CSS to an HTML page
+ 3 ways
+ 
+ 1. Inline
+  <tag style="css"/>
+  
+  It goes to the same line as an HTML Element. in the opening tag
+	-  style attribute is globally available. Attribute has a name and they have a value.
+	-  value section is where we add the CSS Code
+	-  1st part is Propery, 2nd Part is Value
+	-  Property:Value
+  Ex: <html style="background:blue"> </html>
+  
+  As there are lots of HTML elemets, if we a particular style, 
+  we will have to add the style to eah and every element. Pretty Tedious
+  
+  Not normally recommended
+  Only applied to specific sections, may be during testing etc.
+ 1 Element 
+ 
+ 2. Internal
+ <style>css</style>
+ 
+	- This is done through a special HTML tag 
+		 <style>
+			html{
+				background:blue;
+			}
+		 </style>
+	- Selector goes just before curly braces and CSS code goes in b/w curly braces
+	- Internal syling can be applied anywhere in the entire HTML doc 
+	- and inside we can target and select as many elements we wish to 
+	
+	if we have a multipage website, then shouldn't use internal css styling
+	 1 Webpage
+ 
+ 3. External
+ <link href="style.css">
+ 
+ 
+	 - Diff b/w internal and external CSS styling is - external lives in a completely seperate file.
+	 - Ex: styles.css
+			 html{
+			 background:green;
+			 }
+	 
+	 How to link up the style sheet file with index.html?
+	 inside the head element, we add a link tag
+	 
+	 <head>
+		<link
+			rel="stylesheet"		// Relationship refers to the role of what it is we're linking to
+			href="./styles.css"		// Location
+		/>
+	 </head>
+	
+	Mostly Used
+	1 Website
+	
+	
+--> CSS Selectors
+Choosing where to apply CSS
+
+property:value
+
+Ex: color:blue
+
+1. Element Selector
+here, h1 is the selector
+This is called element sector. Here, it is targeting all h1
+
+style.css
+h1{
+color:blue
+}
+
+index.html
+<h1>Red</h1>
+<h1>Green</h1>
+<h1>Blue</h1>
+
+Here it will affect all the h1 elements
+
+
+2. Class Selector
+special symbol dot
+Class is something we can add as an attribute to any html element. 
+It is used for grouping elements
+Ex1:
+	.red-heading{
+		color:red;
+	}
+
+	index.html
+	<h1 class="red-heading">Red</h1>
+	<h1>Green</h1>
+	<h1>Blue</h1>
+
+	Here, it will only change the element with matching class.
+
+Ex2:
+	.red-heading{
+		color:red;
+	}
+
+	index.html
+	<h2 class="red-heading">Red</h2>
+	<h3>Green</h3>
+	<p class="red-heading">Blue</p>
+
+	Here, it will change the color of all elements with the class
+	
+3. Id Selector
+Works similarly to class selector
+Starts with #
+	
+	Ex:
+	#main{
+		color:red;
+	}
+
+	Ex:
+		style.css
+		#main{
+			color:red;
+		}
+		
+		index.html
+		<h2 id="main">Red</h2>
+
+id vs class selector:
+class can be applied to many elements
+id can be applied to only one element in a HTML file. 
+Should be completely unique.
+
+4. Attribute Selector
+p[draggable]{
+	color:red
+}
+
+We can add as many attributes as we like
+id, class, draggable, href, src etc
+
+<h1></h1>
+
+
+Ex1:
+
+p is the html element
+draggable is the attribute
+
+
+	p[draggable]{
+		color:red
+	}
+
+	<p draggable="true">Drag me</p>         // only this will be applied 
+	<p>Don't Drag me</p>
+	<p>Don't Drag me</p>
+
+
+
+	All paragraph elements with the attribute 'draggable' will be applied the css style
+	
+
+Ex2:
+	We can also filter the attribues with certain value
+
+	p[draggable="false"]{
+		color:red
+	}
+
+	<p draggable="true">Drag me</p>         
+	<p draggable="false">Don't Drag me</p>	// this will be applied 
+	<p draggable="false">Don't Drag me</p>	// this will be applied 
+
+5. Universal Selector
+* means select all
+
+*{
+	color:red
+}
+
+This will apply to all the elements where this style sheet is active
+
+--> Color Vocab Project
+
+A website to learn Spanish
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

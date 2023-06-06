@@ -1,0 +1,174 @@
+---------------
+CSS Properties by Angela Yu
+---------------
+
+--> Color Properties
+
+	Previous Ex:
+	html{
+		background-color:red;
+	}
+
+	h1{
+		color:blue;
+	}
+
+
+There are Named Colors. Name of a color 
+
+Each will have a RGB hex value or hex codes
+https://developer.mozilla.org/en-US/docs/Web/CSS/named-color
+
+https://www.csfieldguide.org.nz/en/interactives/rgb-mixer/https://www.csfieldguide.org.nz/en/interactives/rgb-mixer/
+
+	Ex Syntax:
+
+	color: red;
+	color: orange;
+
+For 3rd party color palettes, some tools available are-  color hunt, RGB mixer
+
+
+this hex code is formed by mixing rgb colors out of 255 
+rgb(93,56,145) 
+'converting that rgb from decimal to hex code gives something like #5D3891 
+which is called hex or hexadecimal code
+
+	h1{
+		color: #5D3891;
+	}
+
+	---> Font Properties
+
+
+	h1{
+		color: blue;
+		font-size: 20px;
+		font-weight: bold;
+		font-family: sans-serif;
+	}
+
+--> Font Size:
+
+	h1{
+		font-size: 20px;
+	}
+
+//1px is 1/96th inch; 1X1 cube
+//1 px is pexel 1/96th inch  0.26mm
+//1 pt is a point 1/72nd inch 0.35mm Ex: in ms word, if we specify size 12, it means 12 pt
+//1 em 100% of parent. relative size. 2 em means 2times the size of parent
+//1 rem 100% of root.  relative to the root of the HTML file. root is HTML element
+ rem - more consistent way of changing  font size, recommended
+
+diff b/w em and rem:
+
+Also available are named font size
+xx-large, large etc
+
+
+
+--> Font Weight:
+	generally normal or bold are the basic keywords
+
+	h1{
+		font-weight: bold;
+	}
+
+	normal bold: keywords
+
+	lighter: Relative to parent
+	bolder: Relative to parent
+
+	number: 100-900 //lighter or bolder, lower - lighter, higher - bolder
+
+
+
+-->Font Family
+
+	h1{
+		font-family: Helvetica, sans-serif // typeface, backup generic font type
+	}
+
+
+//back up is taken when the main font is not available
+// sans serif is all edges at right angle, decorating edges etc are all serif type font
+//Times new roman is serif
+
+// in the font family if we have multiple words
+// then, it needs to be embedded in double quotes
+
+	Ex:
+
+	h2{
+		font-family: "Times New Roman",serif
+	}
+
+
+	If we need a custom font
+	Best places to find free fons is https://fonts.google.com/
+	
+
+--> Text Align
+
+	Ex:
+	h1{
+		text-align:center; 
+	}
+
+
+--> The Box Model
+Margin, Padding and Border
+Each element is a box
+we can change the dimensions by changing width nd height
+
+--> 
+height:600px;
+if we increase the height the other elements will be pushed down
+
+--> 
+width: 600px;
+or
+width: 100%;  // this means it can occupy 100% of the screen
+we change the box dimensions using pixels or we can use "%"
+
+-->
+border: 10px solid black;
+
+// 1.thickness 2.style 3.color
+
+	border-top:0px; // in 2nd line it will then alter after what it has rendered in the 1st line
+	border-width: 0px 10px 20px 30px // clockwise direction for each side of the border	top-1 left-2 bottom-3 left-4
+					// 
+
+//border of the box// it takes 3 values seperated by spaces
+
+border: 10px solid black;
+
+
+--> padding:20px; //imagine a <p> element with border inside the box, padding will push the border out by 20px on all sides
+				  //be added b/w the border of <p> and the border of the box
+
+--> margin: 10px //Margin will push any other element by 10px 
+				// be added the border of the box to anyother elements around it
+				
+--->Content Division Element
+used to group elements together
+<div> Content </div>
+div acts as a container to sperate from other sections
+uses: we can style them differently etc...
+we can put as many elements as we can between the div tags and group them
+
+div elements are invisible and can sometmes be hard to distinguish 
+
+use pesticide chrome extension to debug
+
+
+
+
+
+
+
+
+
+

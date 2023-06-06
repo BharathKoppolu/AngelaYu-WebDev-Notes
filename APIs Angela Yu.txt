@@ -1,0 +1,68 @@
+-------------------------
+APIs Angela Yu
+Application Programming Interfaces
+-------------------------
+
+API is a set of commands functions protocols and objects
+that programmers can use to interact with an external system (to create software etc.)
+
+_____________________________________________________________________
+********Frontend
+>>(Restaurant dining area) Website UI | 
+whenever a request is made by a customer 
+********Backend 
+>>Server(kitchen= code is applied on the ingredients) 
+request is sent to the server. Server then retrieves the data from the db
+
+>>Database(shelves where ingrediets are stored)
+This is where data is stored. Server queries to retrieve the required items here.
+
+why is backend seperated from frontend?
+fronted is only presented with a response 
+all the comlex computations are done in the backend.
+user does not need to know the logic (secret recipe of the dishes)
+or the computations (way of making the dish)
+____________________________________________________________________
+
+All websites have data pertaining to thier users
+but there's a limit to which they can share the data with outside world
+How can these websites tell us what to access?
+
+Ex: in a Restaurant, they can tell you what's on the menu and 
+we'll be restricted to what's on there
+
+We can't directly directly go the kitchen and start eating whatever
+
+
+Restaurant 
+API (Menu)
+
+*************
+Kitchen
+
+API can also be considered as a contract b/w data provider and the developer
+
+Data provider: here is the data that u can access, 
+and here the methods, protocols to use to retrieve it
+
+Developer: Will try not to change any of these methods or functions with out notifying you
+
+Ex: jQuery API
+
+either to create software or interact with a system
+
+
+----> API Endpoints, Paths and Parameters
+				Request
+	           -------->	
+	Our Server	(API)	External Server
+			   <--------
+				Response
+				
+			 	
+Important things to know:
+
+1. Endpoint
+2. Paths
+3. Parameters
+4. Authentication
